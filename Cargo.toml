@@ -1,0 +1,15 @@
+[package]
+name = "ibus-rs"
+version = "0.0.1"
+authors = ["Alexey Shvetsov <alexxyum@gmail.com>"]
+edition = "2021"
+rust-version = "1.82"
+description = "A no_std compatible IBUS RC protocol parser for embedded systems"
+repository = "https://github.com/alexxy/ibus-rs"
+documentation = "https://docs.rs/ibus-rs"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+keywords = ["ibus", "embedded", "no_std", "parser", "protocol"]
+categories = ["embedded", "no-std", "parser-implementations"]
+
+[dependencies]
