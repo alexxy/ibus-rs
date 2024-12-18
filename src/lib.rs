@@ -1,4 +1,4 @@
-struct IbusParser {
+pub struct IbusParser {
     buffer: [u8; 32],
     index: usize,
     state: IbusState,
@@ -10,7 +10,7 @@ enum IbusState {
 }
 
 impl IbusParser {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Self {
             buffer: [0; 32],
             index: 0,
@@ -18,7 +18,7 @@ impl IbusParser {
         }
     }
 
-    fn parse_byte(&mut self, byte: u8) -> Option<IbusMessage> {
+    pub fn parse_byte(&mut self, byte: u8) -> Option<IbusMessage> {
         match self.state {
             IbusState::Sync => {
                 if byte == 0x20 {
@@ -53,12 +53,12 @@ impl IbusParser {
 }
 
 #[derive(Debug)]
-struct IbusMessage {
-    channels: [u16; 14],
+pub struct IbusMessage {
+    pub channels: [u16; 14],
 }
 
 impl IbusMessage {
-    fn from_buffer(buffer: &[u8]) -> Self {
+    pub fn from_buffer(buffer: &[u8]) -> Self {
         let mut channels = [0; 14];
         for ch in 0..14 {
             channels[ch] =
@@ -86,8 +86,9 @@ mod tests {
         let mut ibus = IbusParser::new();
         for byte in stream {
             if let Some(message) = ibus.parse_byte(byte) {
+                let channels = message.channels;
                 for i in 0..14 {
-                    assert_eq!(message[i], ref_msg[i]);
+                    assert_eq!(channels[i], ref_msg[i]);
                 }
             }
         }
