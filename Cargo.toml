@@ -1,6 +1,6 @@
 [package]
 name = "ibus-rs"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Alexey Shvetsov <alexxyum@gmail.com>"]
 edition = "2021"
 rust-version = "1.82"
